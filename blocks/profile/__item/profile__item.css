@@ -1,0 +1,5 @@
+.profile__item {
+    display: flex;
+    align-items: baseline;
+    padding-left: 13.2px;
+}

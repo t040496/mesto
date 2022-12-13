@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./pages/index.css">
+    <title>Mesto</title>
+</head>
+<body class="page">
+    <header class="header">
+
+        <div class="logo"></div>
+    </header>
+    <main>
+        <section class="profile">
+            <div class="profile__items">
+                <img src="./images/avatar.jpg" alt="Аватар пользователя" class="profile__image">
+                <div class="profile__info">
+                
+                    <div class="profile__item">
+                        <h1 class="profile__title">Жак-Ив Кусто</h1>
+                        <button class="profile__button-edit"></button>
+                    </div>
+                    <p class="profile__subtitle">Исследователь океана</p>
+                </div>
+            </div>                
+            <button class="profile__button-add"></button>
+        </section>
+        <section class="elements">
+            <article class="elements__item">
+                <img src="./images/Karachaevsk.jpg" alt="Храм на скальном отроге" class="element__image">
+                <div class="elements__info">
+                    <h2 class="elements__title">Карачаевск</h2>
+                    <button class="elements__button"></button>
+                </div>
+            </article>
+            <article class="elements__item">
+                <img src="./images/Elbrus.jpg" alt="Вид на поля с горой Эльбрус на горизонте" class="element__image">
+                <div class="elements__info">
+                    <h2 class="elements__title">Гора Эльбрус</h2>
+                    <button class="elements__button"></button>
+                </div>
+            </article>
+            <article class="elements__item">
+                <img src="./images/Dombai.jpg" alt="Вид на заснеженные горы" class="element__image">
+                <div class="elements__info">
+                    <h2 class="elements__title">Домбай</h2>
+                    <button class="elements__button"></button>
+                </div>
+            </article>
+            <article class="elements__item">
+                <img src="./images/Iremel.jpg" alt="Голубое небо и Вид гору" class="element__image">
+                <div class="elements__info">
+                    <h2 class="elements__title">Гора Иремель</h2>
+                    <button class="elements__button"></button>
+                </div>
+            </article>
+            <article class="elements__item">
+                <img src="./images/Belukha Mountain.jpg" alt="Вид на гору и спускающихся по склону туристов" class="element__image">
+                <div class="elements__info">
+                    <h2 class="elements__title">Гора Белуха</h2>
+                    <button class="elements__button"></button>
+                </div>
+            </article>
+            <article class="elements__item">
+                <img src="./images/salavat yulaev.jpg" alt="Вид на фигуру Салавата Юлаева на коне" class="element__image">
+                <div class="elements__info">
+                    <h2 class="elements__title">Уфа</h2>
+                    <button class="elements__button"></button>
+                </div>
+            </article>
+        </section>
+        <footer class="footer">
+            <span class="footer__copyright">&#169; 2020 Mesto Russia</span>
+        </footer>
+      
+        <div class="popup">
+            <div class="popup__container">
+                <form  class="popup__form">
+                    <h3 class="popup__title">Редактировать профиль</h3> 
+                    <fieldset class="popup__profile-info">
+                        <input id="formName" type="text" class="popup__form-item popup__form-item_name" placeholder="Ваше имя" name="name" value="">
+                        <input id="formSpecial" type="text" class="popup__form-item popup__form-item_profession" placeholder="Ваша профессия" name="profession" value="">
+                    </fieldset>
+                    <button class="popup__button" type="submit">Сохранить</button>
+                </form>
+                <img src="./images/Close.svg" alt="Иконка закрытия попап-окна" class="popup__close-icon">
+            </div>
+        </div>
+
+    </main>
+    <script async src="./scripts/index.js"></script>
+</body>
+</html>
