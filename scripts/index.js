@@ -24,10 +24,10 @@ function closePopup() {
 // обработчик отправки формы
 function handleFormSubmit(evt) {
     evt.preventDefault(); // отменяем стандартную отправку
-    const rawFormData = new FormData(evt.target);
-    const formData = [...rawFormData.entries()];
-    profileTitle.textContent = formData[0][1];
-    profileSubtitle.textContent = formData[1][1];
+    const rawFormdata = new FormData(evt.target);
+    const formData = Object.fromEntries(rawFormdata.entries());
+    profileTitle.textContent = formData?.name;
+    profileSubtitle.textContent = formData?.profession;
     closePopup();
 };
 
