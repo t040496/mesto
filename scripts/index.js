@@ -3,9 +3,6 @@ const profileButton = document.querySelector('.profile__button-edit');
 //const savePopupButton = document.querySelector('.popup__button');
 const popup = document.querySelector('.popup');
 let form = document.querySelector('.popup__form');
-//Находим поля формы в DOM
-let inputName = document.querySelector('#formName');
-let inputAbout = document.querySelector('#formSpecial');
 let profileTitle = document.querySelector('.profile__title');
 let profileSubtitle = document.querySelector('.profile__subtitle');
 //открытие попап
@@ -14,6 +11,8 @@ function openPopup(event) {
     popup.classList.add('popup__opened');
     const profileTitleTextContent = profileTitle.textContent;
     const profileSubtitleTextContent = profileSubtitle.textContent;
+    const inputName = document.querySelector('#formName');
+    const inputAbout = document.querySelector('#formSpecial');
     inputName.value = profileTitleTextContent;
     inputAbout.value = profileSubtitleTextContent;
 };
