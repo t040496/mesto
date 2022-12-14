@@ -1,0 +1,5 @@
+.elements__image {
+    max-width: 282px;
+    object-fit: contain;
+    object-position: center;
+}

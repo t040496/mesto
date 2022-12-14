@@ -12,3 +12,9 @@
     src: url(./fonts/Inter-Medium.woff),
     url(./fonts/Inter-Medium.woff2);
 } 
+@font-face {
+    font-family: 'Inter';
+    font-weight: 900;
+    src: url(./fonts/Inter-Black.woff),
+    url(./fonts/Inter-Black.woff2);
+} 

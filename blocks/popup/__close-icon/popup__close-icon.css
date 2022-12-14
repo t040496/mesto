@@ -1,7 +1,10 @@
 .popup__close-icon {
-    max-width: 32px;
-    max-height: 32px;
+    background-image: url(../../../images/Close.svg);
+    min-width: 32px;
+    min-height: 32px;
     position: absolute;
     top: -40px;
     left: 438px;
+    background-color: #000;
+    border: none;
 }
