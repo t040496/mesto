@@ -12,14 +12,14 @@ const inputAbout = document.querySelector('#formSpecial');
 //открытие попап
 function openPopup(event) {
     event.preventDefault();
-    popup.classList.add('popup__opened');
+    popup.classList.add('popup_opened');
     inputName.value = profileTitleTextContent;
     inputAbout.value = profileSubtitleTextContent;
 };
 
 //закрытие попап
 function closePopup() {
-    popup.classList.remove('popup__opened');
+    popup.classList.remove('popup_opened');
 };
 // обработчик отправки формы
 function handleFormSubmit(evt) {

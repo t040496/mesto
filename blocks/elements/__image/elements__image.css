@@ -2,4 +2,5 @@
     max-width: 282px;
     object-fit: contain;
     object-position: center;
+    display: block;
 }
