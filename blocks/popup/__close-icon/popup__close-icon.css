@@ -8,3 +8,12 @@
     background-color: #000;
     border: none;
 }
+@media screen and (max-width: 767px) {
+  .popup__close-icon {
+    min-width: 20px;
+    min-height: 20px;
+    top: -36px;
+    left: 262px;
+    background-size: 20px;
+  }
+}

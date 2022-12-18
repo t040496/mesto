@@ -5,16 +5,13 @@ const popup = document.querySelector('.popup');
 let form = document.querySelector('.popup__form');
 let profileTitle = document.querySelector('.profile__title');
 let profileSubtitle = document.querySelector('.profile__subtitle');
-const profileTitleTextContent = profileTitle.textContent;
-const profileSubtitleTextContent = profileSubtitle.textContent;
 const inputName = document.querySelector('#formName');
 const inputAbout = document.querySelector('#formSpecial');
 //открытие попап
 function openPopup(event) {
-    event.preventDefault();
     popup.classList.add('popup_opened');
-    inputName.value = profileTitleTextContent;
-    inputAbout.value = profileSubtitleTextContent;
+    inputName.value = profileTitle.textContent;
+    inputAbout.value = profileSubtitle.textContent;
 };
 
 //закрытие попап
@@ -24,10 +21,8 @@ function closePopup() {
 // обработчик отправки формы
 function handleFormSubmit(evt) {
     evt.preventDefault(); // отменяем стандартную отправку
-    const rawFormdata = new FormData(evt.target);
-    const formData = Object.fromEntries(rawFormdata.entries());
-    profileTitle.textContent = formData?.name;
-    profileSubtitle.textContent = formData?.profession;
+    profileTitle.textContent = inputName.value;
+    profileSubtitle.textContent = inputAbout.value;
     closePopup();
 };
 
