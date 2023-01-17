@@ -33,7 +33,7 @@ const profileButton = document.querySelector('.profile__button-edit');
 //const savePopupButton = document.querySelector('.popup__button');
 const profilePopup = document.querySelector('#profilePopup');
 
-let form = document.querySelector('.popup__form');
+let profileForm = document.querySelector('.popup__form');
 let profileTitle = document.querySelector('.profile__title');  // в верстке секции profile
 let profileSubtitle = document.querySelector('.profile__subtitle'); // в верстке секции profile
 const inputName = document.querySelector('#formName'); // инпут в попапе
@@ -41,7 +41,7 @@ const inputAbout = document.querySelector('#formSpecial'); // инпут в по
 const popupBigImage = document.querySelector('#popup-gallery');
 const popupBigImageZoom = document.querySelector('.popup__image')   // изображение в зуме
 const popupBigImageName = document.querySelector('.popup__image-subtitle'); // надпись изображения
-const addCardPopup = document.querySelector('#popupAddCard');
+const addCardForm = document.querySelector('#addCardForm'); // исправил название
 const addButton = document.querySelector('.profile__button-add'); // кнопка добавления карточек
 
 const inputTitle = document.querySelector('#formTitle');
@@ -72,20 +72,20 @@ closePopupProfileButton.addEventListener('click', () => {
   closePopup(profilePopup)
 });
 
-form.addEventListener('submit', handleFormSubmit); //profileForm
+profileForm.addEventListener('submit', handleFormSubmit); //profileForm было form
 
 
 addButton.addEventListener('click', function() {
-  openPopup(addCardPopup);
+  openPopup(addCardForm);
 })
 function handleFormSubmitCard(event) {
   event.preventDefault();   //
   const cardName = inputTitle.value;
   const cardLink = inputLink.value;
   renderCard(cardName, cardLink);
-  closePopup(addCardPopup);
+  closePopup(addCardForm);
 };
-addCardPopup.addEventListener('submit', handleFormSubmitCard); // не addCardPopup, a addCardForm
+addCardForm.addEventListener('submit', handleFormSubmitCard);
 
 
 
@@ -123,7 +123,7 @@ initialCards.forEach((element) => {
   });
 // Закрытие попап с добавлением карточек
 closePopupAddCard.addEventListener('click', function() {
-  closePopup(addCardPopup)
+  closePopup(addCardForm)
 })
 
 
