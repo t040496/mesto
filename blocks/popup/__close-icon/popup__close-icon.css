@@ -4,16 +4,21 @@
     min-height: 32px;
     position: absolute;
     top: -40px;
-    left: 438px;
+    right: -40px;
     background-color: #000;
     border: none;
+    background-repeat: no-repeat;
+}
+.popup__close-icon:hover {
+  opacity: 60%;
+  transition: opacity .3s ease;
 }
 @media screen and (max-width: 767px) {
   .popup__close-icon {
     min-width: 20px;
     min-height: 20px;
     top: -36px;
-    left: 262px;
+    right: 0px;
     background-size: 20px;
   }
 }

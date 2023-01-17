@@ -36,3 +36,14 @@
 @import url(../blocks/popup/__form-item/_profession/popup__form-item_type_profession.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/button/button.css);
+@import url(../blocks/popup/_add_card/popup__add_card.css);
+
+
+@import url(../blocks/elements/__like/_active/elements__like_active.css);
+@import url(../blocks/elements/__button/elements__button.css);
+
+@import url(../blocks/popup/__gallery/popup__gallery.css);
+@import url(../blocks/popup/__img-container/popup__img-container.css);
+@import url(../blocks/popup/__wrapper-figure/popup__wrapper-figure.css);
+@import url(../blocks/popup/__image/popup__image.css);
+@import url(../blocks/popup/__image-subtitle/popup__image-subtitle.css);

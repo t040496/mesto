@@ -29,55 +29,13 @@
       <button class="button profile__button-add" type="button"></button>
     </section>
     <section class="elements">
-      <article class="elements__item">
-        <img src="./images/Karachaevsk.jpg" alt="Храм на скальном отроге" class="elements__image">
-        <div class="elements__info">
-          <h2 class="elements__title">Карачаевск</h2>
-          <button class="button elements__like" type="button"></button>
-        </div>
-      </article>
-      <article class="elements__item">
-        <img src="./images/Elbrus.jpg" alt="Вид на поля с горой Эльбрус на горизонте" class="elements__image">
-        <div class="elements__info">
-          <h2 class="elements__title">Гора Эльбрус</h2>
-          <button class="button elements__like" type="button"></button>
-        </div>
-      </article>
-      <article class="elements__item">
-        <img src="./images/Dombai.jpg" alt="Вид на заснеженные горы" class="elements__image">
-        <div class="elements__info">
-          <h2 class="elements__title">Домбай</h2>
-          <button class="button elements__like" type="button"></button>
-        </div>
-      </article>
-      <article class="elements__item">
-        <img src="./images/Iremel.jpg" alt="Голубое небо и Вид гору" class="elements__image">
-        <div class="elements__info">
-          <h2 class="elements__title">Гора Иремель</h2>
-          <button class="button elements__like" type="button"></button>
-        </div>
-      </article>
-      <article class="elements__item">
-        <img src="./images/Belukha_Mountain.jpg" alt="Вид на гору и спускающихся по склону туристов"
-          class="elements__image">
-        <div class="elements__info">
-          <h2 class="elements__title">Гора Белуха</h2>
-          <button class="button elements__like" type="button"></button>
-        </div>
-      </article>
-      <article class="elements__item">
-        <img src="./images/salavat_yulaev.jpg" alt="Вид на фигуру Салавата Юлаева на коне" class="elements__image">
-        <div class="elements__info">
-          <h2 class="elements__title">Уфа</h2>
-          <button class="elements__like" type="button"></button>
-        </div>
-      </article>
+
     </section>
     <footer class="footer">
       <span class="footer__copyright">&#169; 2020 Mesto Russia</span>
     </footer>
 
-    <div class="popup">
+    <div class="popup" id="profilePopup">
       <div class="popup__container">
         <form class="popup__form">
           <h3 class="popup__title">Редактировать профиль</h3>
@@ -89,12 +47,50 @@
           </fieldset>
           <button class="popup__button" type="submit">Сохранить</button>
         </form>
-        <button class="popup__close-icon" type="button"></button>
+        <button class="popup__close-icon" type="button" id="buttonCloseProfile"></button>
       </div>
     </div>
+    <div class="popup popup__add_card" id="popupAddCard">
+      <div class="popup__container">
+        <form class="popup__form">
+          <h3 class="popup__title">Новое место</h3>
+          <fieldset class="popup__profile-info">
+            <input id="formTitle" type="text" class="popup__form-item popup__form-item_type_name" placeholder="Название"
+              name="nameOfLocation" value="">
+            <input type="url" id="formLink" type="text" class="popup__form-item popup__form-item_type_profession"
+              placeholder="Ссылка на картинку" name="link" value="">
+          </fieldset>
+          <button class="popup__button popup__button_create" type="submit">Создать</button>
+        </form>
+        <button class="popup__close-icon" type="button" id="buttonCloseCard"></button>
+      </div>
+    </div>
+    <div class="popup popup__gallery" id="popup-gallery">
 
+      <div class="popup__img-container popup__container">
+        <button class="popup__close-icon" type="button" id="buttonGallery"></button>
+        <figure class="popup__wrapper-figure">
+          <img src="#" class="popup__image"  alt="">
+          <figcaption class="popup__image-subtitle"></figcaption>
+        </figure>
+      <p class="popup__image-subtitle"></p>
+      </div>
+
+    </div>
   </main>
   <script async src="./scripts/index.js"></script>
+  <template id="elements__item-template">
+
+
+    <article class="elements__item">
+      <button class="elements__button"></button>
+      <img src="./images/Karachaevsk.jpg" alt="Храм на скальном отроге" class="elements__image">
+      <div class="elements__info">
+        <h2 class="elements__title">Карачаевск</h2>
+        <button class="elements__like" type="button"></button>
+      </div>
+    </article>
+  </template>
 </body>
 
 </html>
