@@ -41,7 +41,7 @@
 @import url(../blocks/elements/__like/_active/elements__like_active.css);
 @import url(../blocks/elements/__button/elements__button.css);
 
-@import url(../blocks/popup/__gallery/popup__gallery.css);
+@import url(../blocks/popup/_gallery/popup__gallery.css);
 @import url(../blocks/popup/__img-container/popup__img-container.css);
 @import url(../blocks/popup/__wrapper-figure/popup__wrapper-figure.css);
 @import url(../blocks/popup/__image/popup__image.css);
