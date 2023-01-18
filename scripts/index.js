@@ -25,7 +25,7 @@ const initialCards = [
   }
 ];
 const elements = document.querySelector('.elements');
-const closePopupButton = document.querySelector('.popup__close-icon');
+const closePopupButtons = document.querySelectorAll('.popup__close-icon');
 const closePopupButtonGallery = document.querySelector('#buttonGallery')
 const closePopupAddCard = document.querySelector('#buttonCloseCard')
 const closePopupProfileButton = document.querySelector('#buttonCloseProfile')
@@ -33,7 +33,7 @@ const profileButton = document.querySelector('.profile__button-edit');
 //const savePopupButton = document.querySelector('.popup__button');
 const profilePopup = document.querySelector('#profilePopup');
 
-let profileForm = document.querySelector('.popup__form');
+const profileForm = document.querySelector('.popup__form');
 let profileTitle = document.querySelector('.profile__title');  // в верстке секции profile
 let profileSubtitle = document.querySelector('.profile__subtitle'); // в верстке секции profile
 const inputName = document.querySelector('#formName'); // инпут в попапе
@@ -43,6 +43,7 @@ const popupBigImageZoom = document.querySelector('.popup__image')   // изоб�
 const popupBigImageName = document.querySelector('.popup__image-subtitle'); // надпись изображения
 const addCardForm = document.querySelector('#addCardForm'); // исправил название
 const addButton = document.querySelector('.profile__button-add'); // кнопка добавления карточек
+const template = document.querySelector('#elements__item-template');
 
 const inputTitle = document.querySelector('#formTitle');
 const inputLink = document.querySelector('#formLink');
@@ -68,11 +69,11 @@ profileButton.addEventListener('click', function() {
   inputName.value = profileTitle.textContent;
   inputAbout.value = profileSubtitle.textContent;
 })
-closePopupProfileButton.addEventListener('click', () => {
-  closePopup(profilePopup)
-});
+//closePopupProfileButton.addEventListener('click', () => {
+//  closePopup(profilePopup)
+//});
 
-profileForm.addEventListener('submit', handleFormSubmit); //profileForm было form
+profileForm.addEventListener('submit', handleFormSubmit);
 
 
 addButton.addEventListener('click', function() {
@@ -84,16 +85,14 @@ function handleFormSubmitCard(event) {
   const cardLink = inputLink.value;
   renderCard(cardName, cardLink);
   closePopup(addCardForm);
+  event.target.reset()
 };
 addCardForm.addEventListener('submit', handleFormSubmitCard);
 
 
 
 //создаем карточку
-
 const createCard = (cardName, cardLink) => {
-  const template = document.querySelector('#elements__item-template');
-  //template.querySelector('.elements__item');
   const card = template.content.querySelector('.elements__item').cloneNode(true);
   const image = card.querySelector('.elements__image');
   image.src = cardLink;
@@ -122,9 +121,9 @@ initialCards.forEach((element) => {
   renderCard(element.name, element.link);
   });
 // Закрытие попап с добавлением карточек
-closePopupAddCard.addEventListener('click', function() {
-  closePopup(addCardForm)
-})
+//closePopupAddCard.addEventListener('click', function() {
+//  closePopup(addCardForm)
+//})
 
 
 
@@ -135,6 +134,15 @@ popupBigImageName.textContent = cardName;
 openPopup(popupBigImage);
 }
 //ЗАКРЫТИЕ галереи
-closePopupButtonGallery.addEventListener('click', function() {
-  closePopup(popupBigImage)
-})
+//closePopupButtonGallery.addEventListener('click', function() {
+//  closePopup(popupBigImage)
+//})
+
+//способ универсально навесить обработчики крестиков
+// находим все крестики проекта по универсальному селектору
+closePopupButtons.forEach((button) => {
+  // находим 1 раз ближайший к крестику попап
+  const popup = button.closest('.popup');
+  // устанавливаем обработчик закрытия на крестик
+  button.addEventListener('click', () => closePopup(popup));
+});
