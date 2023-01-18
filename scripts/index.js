@@ -34,8 +34,8 @@ const profileButton = document.querySelector('.profile__button-edit');
 const profilePopup = document.querySelector('#profilePopup');
 
 const profileForm = document.querySelector('.popup__form');
-let profileTitle = document.querySelector('.profile__title');  // в верстке секции profile
-let profileSubtitle = document.querySelector('.profile__subtitle'); // в верстке секции profile
+const profileTitle = document.querySelector('.profile__title');  // в верстке секции profile
+const profileSubtitle = document.querySelector('.profile__subtitle'); // в верстке секции profile
 const inputName = document.querySelector('#formName'); // инпут в попапе
 const inputAbout = document.querySelector('#formSpecial'); // инпут в попапе
 const popupBigImage = document.querySelector('#popup-gallery');
