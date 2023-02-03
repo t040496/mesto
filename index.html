@@ -37,14 +37,16 @@
 
     <div class="popup" id="profilePopup">
       <div class="popup__container">
-        <form class="popup__form">
+        <form class="popup__form" novalidate>
           <h3 class="popup__title">Редактировать профиль</h3>
           <fieldset class="popup__profile-info">
             <input id="formName" type="text" class="popup__form-item popup__form-item_type_name" placeholder="Ваше имя"
-              name="name" value="">
+              name="name" value="" required minlength="2" maxlength="40">
+              <span class="popup__form-item-error formName-error" ></span>
             <input id="formSpecial" type="text" class="popup__form-item"
 
-              placeholder="Ваша профессия" name="profession" value="">
+              placeholder="Ваша профессия" name="profession" value="" required minlength="2" maxlength="200">
+              <span class="popup__form-item-error formSpecial-error" ></span>
           </fieldset>
           <button class="popup__button" type="submit">Сохранить</button>
         </form>
@@ -53,15 +55,17 @@
     </div>
     <div class="popup" id="addCardForm">
       <div class="popup__container">
-        <form class="popup__form">
+        <form class="popup__form" novalidate>
           <h3 class="popup__title">Новое место</h3>
           <fieldset class="popup__profile-info">
             <input id="formTitle" type="text" class="popup__form-item popup__form-item_type_name" placeholder="Название"
-              name="nameOfLocation" value="">
+              name="nameOfLocation" value="" minlength="3" required>
+              <span class="popup__form-item-error formTitle-error" ></span>
             <input type="url" id="formLink" class="popup__form-item"
               placeholder="Ссылка на картинку" name="link" value="">
+              <span class="popup__form-item-error formLink-error" ></span>
           </fieldset>
-          <button class="popup__button popup__button_create" type="submit">Создать</button>
+          <button class="popup__button popup__button_create popup__button_invalid" type="submit">Создать</button>
         </form>
         <button class="popup__close-icon" type="button" id="buttonCloseCard"></button>
       </div>
@@ -78,6 +82,7 @@
 
     </div>
   </main>
+  <script src="./scripts/validate.js"></script>
   <script async src="./scripts/index.js"></script>
   <template id="elements__item-template">
 

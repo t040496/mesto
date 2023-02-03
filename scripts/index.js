@@ -1,3 +1,12 @@
+//import validate from './validate.js';
+const validationConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__form-item',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_invalid',
+  inputErrorClass: 'popup__form-item_type_error',
+  errorClass: 'popup__form-item_error_visible'
+};
 const initialCards = [
   {
     name: 'Архыз',
@@ -44,17 +53,27 @@ const popupBigImageName = document.querySelector('.popup__image-subtitle'); // �
 const addCardForm = document.querySelector('#addCardForm'); // исправил название
 const addButton = document.querySelector('.profile__button-add'); // кнопка добавления карточек
 const template = document.querySelector('#elements__item-template');
-
 const inputTitle = document.querySelector('#formTitle');
 const inputLink = document.querySelector('#formLink');
+const popups = document.querySelectorAll('.popup');
+
+const handleEscPopup = (evt) => {
+  if (evt.key === 'Escape') {
+    const popupOpened = document.querySelector('.popup_opened');
+    closePopup(popupOpened);
+  };
+};
 
 //открытие попап
 function openPopup(event) {
+
     event.classList.add('popup_opened');
+    document.addEventListener('keyup', handleEscPopup);
 };
 //закрытие попап
 function closePopup(popElement) {
     popElement.classList.remove('popup_opened');
+    document.removeEventListener('keyup', handleEscPopup);
 };
 // обработчик отправки формы
 function handleFormSubmit(evt) {   // handleFormSubmitProfile
@@ -63,6 +82,8 @@ function handleFormSubmit(evt) {   // handleFormSubmitProfile
     profileSubtitle.textContent = inputAbout.value;
     closePopup(profilePopup);
 };
+
+
 
 profileButton.addEventListener('click', function() {
   openPopup(profilePopup);
@@ -88,7 +109,6 @@ function handleFormSubmitCard(event) {
   event.target.reset()
 };
 addCardForm.addEventListener('submit', handleFormSubmitCard);
-
 
 
 //создаем карточку
@@ -146,3 +166,19 @@ closePopupButtons.forEach((button) => {
   // устанавливаем обработчик закрытия на крестик
   button.addEventListener('click', () => closePopup(popup));
 });
+
+
+
+
+enableValidation(validationConfig);
+
+//оверлей
+popups.forEach((popup) => {
+  popup.addEventListener('click', function(evt) {
+  if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains("popup__close-icon")) {
+    closePopup(popup);
+  }
+})
+});
+
+
