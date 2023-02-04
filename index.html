@@ -8,6 +8,8 @@
   <meta name="author" content="Timur">
   <meta name="description" content="Загружайте фотографии, ставьте лайки в сервисе Mesto">
   <link rel="stylesheet" href="./pages/index.css">
+  <script defer src="./scripts/validate.js"></script>
+  <script defer src="./scripts/index.js"></script>
   <title lang="en">Mesto</title>
 </head>
 <body class="page">
@@ -41,7 +43,7 @@
           <h3 class="popup__title">Редактировать профиль</h3>
           <fieldset class="popup__profile-info">
             <input id="formName" type="text" class="popup__form-item popup__form-item_type_name" placeholder="Ваше имя"
-              name="name" value="" required minlength="2" maxlength="40">
+              name="name" required minlength="2" maxlength="40">
               <span class="popup__form-item-error formName-error" ></span>
             <input id="formSpecial" type="text" class="popup__form-item"
 
@@ -59,10 +61,10 @@
           <h3 class="popup__title">Новое место</h3>
           <fieldset class="popup__profile-info">
             <input id="formTitle" type="text" class="popup__form-item popup__form-item_type_name" placeholder="Название"
-              name="nameOfLocation" value="" minlength="2" maxlength="30" required>
+              name="nameOfLocation" minlength="2" maxlength="30" required>
               <span class="popup__form-item-error formTitle-error" ></span>
             <input type="url" id="formLink" class="popup__form-item"
-              placeholder="Ссылка на картинку" name="link" value="">
+              placeholder="Ссылка на картинку" name="link">
               <span class="popup__form-item-error formLink-error" ></span>
           </fieldset>
           <button class="popup__button popup__button_create popup__button_invalid" type="submit">Создать</button>
@@ -82,8 +84,7 @@
 
     </div>
   </main>
-  <script src="./scripts/validate.js"></script>
-  <script async src="./scripts/index.js"></script>
+
   <template id="elements__item-template">
 
 

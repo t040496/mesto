@@ -1,4 +1,3 @@
-//import validate from './validate.js';
 const validationConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__form-item',
@@ -7,8 +6,7 @@ const validationConfig = {
   inputErrorClass: 'popup__form-item_type_error',
   errorClass: 'popup__form-item_error_visible'
 };
-const initialCards = [
-  {
+const initialCards = [{
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
   },
@@ -35,20 +33,18 @@ const initialCards = [
 ];
 const elements = document.querySelector('.elements');
 const closePopupButtons = document.querySelectorAll('.popup__close-icon');
-const closePopupButtonGallery = document.querySelector('#buttonGallery')
-const closePopupAddCard = document.querySelector('#buttonCloseCard')
 const closePopupProfileButton = document.querySelector('#buttonCloseProfile')
 const profileButton = document.querySelector('.profile__button-edit');
 //const savePopupButton = document.querySelector('.popup__button');
 const profilePopup = document.querySelector('#profilePopup');
 
 const profileForm = document.querySelector('.popup__form');
-const profileTitle = document.querySelector('.profile__title');  // в верстке секции profile
+const profileTitle = document.querySelector('.profile__title'); // в верстке секции profile
 const profileSubtitle = document.querySelector('.profile__subtitle'); // в верстке секции profile
 const inputName = document.querySelector('#formName'); // инпут в попапе
 const inputAbout = document.querySelector('#formSpecial'); // инпут в попапе
 const popupBigImage = document.querySelector('#popup-gallery');
-const popupBigImageZoom = document.querySelector('.popup__image')   // изображение в зуме
+const popupBigImageZoom = document.querySelector('.popup__image') // изображение в зуме
 const popupBigImageName = document.querySelector('.popup__image-subtitle'); // надпись изображения
 const addCardForm = document.querySelector('#addCardForm'); // исправил название
 const addButton = document.querySelector('.profile__button-add'); // кнопка добавления карточек
@@ -56,6 +52,7 @@ const template = document.querySelector('#elements__item-template');
 const inputTitle = document.querySelector('#formTitle');
 const inputLink = document.querySelector('#formLink');
 const popups = document.querySelectorAll('.popup');
+const submitButtonPopup = document.querySelector('.popup__button')
 
 const handleEscPopup = (evt) => {
   if (evt.key === 'Escape') {
@@ -67,25 +64,25 @@ const handleEscPopup = (evt) => {
 //открытие попап
 function openPopup(event) {
 
-    event.classList.add('popup_opened');
-    document.addEventListener('keyup', handleEscPopup);
+  event.classList.add('popup_opened');
+  document.addEventListener('keyup', handleEscPopup);
 };
 //закрытие попап
 function closePopup(popElement) {
-    popElement.classList.remove('popup_opened');
-    document.removeEventListener('keyup', handleEscPopup);
+  popElement.classList.remove('popup_opened');
+  document.removeEventListener('keyup', handleEscPopup);
 };
 // обработчик отправки формы
-function handleFormSubmit(evt) {   // handleFormSubmitProfile
-    evt.preventDefault(); // отменяем стандартную отправку
-    profileTitle.textContent = inputName.value;
-    profileSubtitle.textContent = inputAbout.value;
-    closePopup(profilePopup);
+function handleFormSubmitProfile(evt) { //было раньше: handleFormSubmit
+  evt.preventDefault(); // отменяем стандартную отправку
+  profileTitle.textContent = inputName.value;
+  profileSubtitle.textContent = inputAbout.value;
+  closePopup(profilePopup);
 };
 
 
 
-profileButton.addEventListener('click', function() {
+profileButton.addEventListener('click', function () {
   openPopup(profilePopup);
   inputName.value = profileTitle.textContent;
   inputAbout.value = profileSubtitle.textContent;
@@ -94,21 +91,22 @@ profileButton.addEventListener('click', function() {
 //  closePopup(profilePopup)
 //});
 
-profileForm.addEventListener('submit', handleFormSubmit);
+profileForm.addEventListener('submit', handleFormSubmitProfile);
 
 
-addButton.addEventListener('click', function() {
+addButton.addEventListener('click', function () {
   openPopup(addCardForm);
 })
-function handleFormSubmitCard(event) {
-  event.preventDefault();   //
+
+function handleFormCardSubmit(event) { // было раньше handleFormSubmitCard
+  event.preventDefault(); //
   const cardName = inputTitle.value;
   const cardLink = inputLink.value;
   renderCard(cardName, cardLink);
   closePopup(addCardForm);
   event.target.reset()
 };
-addCardForm.addEventListener('submit', handleFormSubmitCard);
+addCardForm.addEventListener('submit', handleFormCardSubmit);
 
 
 //создаем карточку
@@ -127,7 +125,7 @@ const createCard = (cardName, cardLink) => {
     buttonLike.classList.toggle('elements__like_active')
   })
   image.addEventListener('click', () => {
-    renderingBigCard(cardName, cardLink);
+    renderBigCard(cardName, cardLink);
   });
 
   return card;
@@ -139,7 +137,7 @@ const renderCard = (cardName, cardLink) => {
 //пройтись по массиву, взять элементы, вставить; element - каждый элемент массива initialCards
 initialCards.forEach((element) => {
   renderCard(element.name, element.link);
-  });
+});
 // Закрытие попап с добавлением карточек
 //closePopupAddCard.addEventListener('click', function() {
 //  closePopup(addCardForm)
@@ -147,11 +145,11 @@ initialCards.forEach((element) => {
 
 
 
-const renderingBigCard = (cardName, cardLink) => {
-popupBigImageZoom.src = cardLink;
-popupBigImageZoom.alt = cardName;
-popupBigImageName.textContent = cardName;
-openPopup(popupBigImage);
+const renderBigCard = (cardName, cardLink) => {
+  popupBigImageZoom.src = cardLink;
+  popupBigImageZoom.alt = cardName;
+  popupBigImageName.textContent = cardName;
+  openPopup(popupBigImage);
 }
 //ЗАКРЫТИЕ галереи
 //closePopupButtonGallery.addEventListener('click', function() {
@@ -174,11 +172,9 @@ enableValidation(validationConfig);
 
 //оверлей
 popups.forEach((popup) => {
-  popup.addEventListener('click', function(evt) {
-  if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains("popup__close-icon")) {
-    closePopup(popup);
-  }
-})
+  popup.addEventListener('click', function (evt) {
+    if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains("popup__close-icon")) {
+      closePopup(popup);
+    }
+  })
 });
-
-

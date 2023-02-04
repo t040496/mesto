@@ -5,9 +5,9 @@
     position: absolute;
     top: -40px;
     right: -40px;
-    background-color: #000;
     border: none;
     background-repeat: no-repeat;
+    background-color: transparent;
 }
 .popup__close-icon:hover {
   opacity: 60%;
