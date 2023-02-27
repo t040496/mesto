@@ -1,10 +1,13 @@
+import Card from './Card.js';
+import FormValidator from './FormValidator.js';
+
 const validationConfig = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__form-item',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_invalid',
-  inputErrorClass: 'popup__form-item_type_error',
-  errorClass: 'popup__form-item_error_visible'
+  formSelector: '.popup__form', //блок форм
+  inputSelector: '.popup__form-item', // поля инпут
+  submitButtonSelector: '.popup__button', //кнопка
+  inactiveButtonClass: 'popup__button_invalid', //кнопка в неактивном состоянии
+  inputErrorClass: 'popup__form-item_type_error', // ищем строки с инпутом в состоянии ошибки
+  errorClass: 'popup__form-item_error_visible' //делаем строки span с тектом ошибок видимыми
 };
 const initialCards = [{
     name: 'Архыз',
@@ -61,13 +64,12 @@ const handleEscPopup = (evt) => {
   };
 };
 
-//открытие попап
 function openPopup(event) {
 
   event.classList.add('popup_opened');
   document.addEventListener('keyup', handleEscPopup);
 };
-//закрытие попап
+
 function closePopup(popElement) {
   popElement.classList.remove('popup_opened');
   document.removeEventListener('keyup', handleEscPopup);
@@ -80,16 +82,6 @@ function handleFormSubmitProfile(evt) { //было раньше: handleFormSubmi
   closePopup(profilePopup);
 };
 
-
-
-profileButton.addEventListener('click', function () {
-  openPopup(profilePopup);
-  inputName.value = profileTitle.textContent;
-  inputAbout.value = profileSubtitle.textContent;
-})
-//closePopupProfileButton.addEventListener('click', () => {
-//  closePopup(profilePopup)
-//});
 
 profileForm.addEventListener('submit', handleFormSubmitProfile);
 
@@ -108,53 +100,21 @@ function handleFormCardSubmit(event) { // было раньше handleFormSubmit
 };
 addCardForm.addEventListener('submit', handleFormCardSubmit);
 
-
-//создаем карточку
-const createCard = (cardName, cardLink) => {
-  const card = template.content.querySelector('.elements__item').cloneNode(true);
-  const image = card.querySelector('.elements__image');
-  image.src = cardLink;
-  card.querySelector('.elements__title').textContent = cardName;
-  card.alt = cardName;
-  const elements__button = card.querySelector('.elements__button')
-  elements__button.addEventListener('click', () => {
-    card.remove();
-  });
-  const buttonLike = card.querySelector('.elements__like')
-  buttonLike.addEventListener('click', () => {
-    buttonLike.classList.toggle('elements__like_active')
-  })
-  image.addEventListener('click', () => {
-    renderBigCard(cardName, cardLink);
-  });
-
-  return card;
-}
-//функция добавления карточек
-const renderCard = (cardName, cardLink) => {
-  elements.prepend(createCard(cardName, cardLink))
-}
-//пройтись по массиву, взять элементы, вставить; element - каждый элемент массива initialCards
-initialCards.forEach((element) => {
-  renderCard(element.name, element.link);
-});
-// Закрытие попап с добавлением карточек
-//closePopupAddCard.addEventListener('click', function() {
-//  closePopup(addCardForm)
-//})
-
-
-
 const renderBigCard = (cardName, cardLink) => {
   popupBigImageZoom.src = cardLink;
   popupBigImageZoom.alt = cardName;
   popupBigImageName.textContent = cardName;
   openPopup(popupBigImage);
 }
-//ЗАКРЫТИЕ галереи
-//closePopupButtonGallery.addEventListener('click', function() {
-//  closePopup(popupBigImage)
-//})
+//функция добавления карточек
+const renderCard = (cardName, cardLink) => {
+  const card = new Card(cardName, cardLink, '#elements__item-template', renderBigCard)// ПР7, новый эксземпляр класса card, через new вызываем класс, в скобках передаем данные для созд. экземпляра класса
+  elements.prepend(card.getView()) // сюда возвращаем разметку  нашей карточки вместо"(createCard(cardName, cardLink))"
+}
+//пройтись по массиву, взять элементы, вставить; element - каждый элемент массива initialCards
+initialCards.forEach((element) => {
+  renderCard(element.name, element.link);
+});
 
 //способ универсально навесить обработчики крестиков
 // находим все крестики проекта по универсальному селектору
@@ -166,10 +126,6 @@ closePopupButtons.forEach((button) => {
 });
 
 
-
-
-enableValidation(validationConfig);
-
 //оверлей
 popups.forEach((popup) => {
   popup.addEventListener('click', function (evt) {
@@ -178,3 +134,20 @@ popups.forEach((popup) => {
     }
   })
 });
+
+
+
+const validationFormEditProfile = new FormValidator(validationConfig, profileForm);
+validationFormEditProfile.enableValidation();
+
+const validationFormAddCard = new FormValidator(validationConfig, addCardForm);
+validationFormAddCard.enableValidation();
+
+
+profileButton.addEventListener('click', function () {
+  openPopup(profilePopup);
+  inputName.value = profileTitle.textContent;
+  inputAbout.value = profileSubtitle.textContent;
+  validationFormEditProfile.resetValidationsErrors();
+  validationFormEditProfile.handleButtonCheckValidity();
+})
