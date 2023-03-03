@@ -106,10 +106,14 @@ const renderBigCard = (cardName, cardLink) => {
   popupBigImageName.textContent = cardName;
   openPopup(popupBigImage);
 }
+const createCard = (cardName, cardLink) => {
+  return new Card(cardName, cardLink, '#elements__item-template', renderBigCard)// ПР7, новый эксземпляр класса card, через new вызываем класс, в скобках передаем данные для созд. экземпляра класса
+}
 //функция добавления карточек
 const renderCard = (cardName, cardLink) => {
-  const card = new Card(cardName, cardLink, '#elements__item-template', renderBigCard)// ПР7, новый эксземпляр класса card, через new вызываем класс, в скобках передаем данные для созд. экземпляра класса
+  const card = createCard(cardName, cardLink);
   elements.prepend(card.getView()) // сюда возвращаем разметку  нашей карточки вместо"(createCard(cardName, cardLink))"
+
 }
 //пройтись по массиву, взять элементы, вставить; element - каждый элемент массива initialCards
 initialCards.forEach((element) => {
@@ -118,12 +122,7 @@ initialCards.forEach((element) => {
 
 //способ универсально навесить обработчики крестиков
 // находим все крестики проекта по универсальному селектору
-closePopupButtons.forEach((button) => {
-  // находим 1 раз ближайший к крестику попап
-  const popup = button.closest('.popup');
-  // устанавливаем обработчик закрытия на крестик
-  button.addEventListener('click', () => closePopup(popup));
-});
+
 
 
 //оверлей

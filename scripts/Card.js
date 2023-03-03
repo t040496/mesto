@@ -20,14 +20,16 @@ class Card {
   }
 
   _deleteCard() {
-     console.log(this._newCard)
     this._newCard.remove();
     this._newCard = null;
 
   }
 
-  _likeCard(button) {
-    button.classList.toggle('elements__like_active')
+  //_likeCard(button) {
+  //  button.classList.toggle('elements__like_active')
+  //}
+  _likeCard = () => {
+    this._buttonLike.classList.toggle('elements__like_active')
   }
   _getCardImage() {
 
@@ -39,8 +41,8 @@ class Card {
     const elements__button = this._newCard.querySelector('.elements__button');
     elements__button.addEventListener('click', () => { this._deleteCard() })
 
-    const buttonLike = this._newCard.querySelector('.elements__like');
-    buttonLike.addEventListener('click', () => { this._likeCard(buttonLike) })
+    this._buttonLike = this._newCard.querySelector('.elements__like');
+    this._buttonLike.addEventListener('click', () => { this._likeCard(this._buttonLike) })
 
     this._cardImage.addEventListener('click', () => {
       this._renderBigCard(this._name, this._link)

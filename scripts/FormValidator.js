@@ -3,7 +3,7 @@ export class FormValidator {
     this._formName = form;
     this._inputSelector = validationConfig.inputSelector;
     this._inputList = [...this._formName.querySelectorAll(this._inputSelector)];
-    this._submitButtonSelector = this._formName.querySelector(validationConfig.submitButtonSelector);
+    this._submitButton = this._formName.querySelector(validationConfig.submitButtonSelector);
     this._inputErrorClass = validationConfig.inputErrorClass;
     this._errorClass = validationConfig.errorClass;
   }
@@ -16,13 +16,13 @@ export class FormValidator {
         this._toggleButton();
       });
     });
-    this._formName.addEventListener('reset', () => {this._submitButtonSelector.disabled = true});
+    this._formName.addEventListener('reset', () => {this._submitButton.disabled = true});
   }
 
   _toggleButton() {
     this._hasInvalidInput(this._inputList)
-      ? this._submitButtonSelector.disabled = true
-      : this._submitButtonSelector.disabled = false
+      ? this._submitButton.disabled = true
+      : this._submitButton.disabled = false
   }
 
   _checkInputValidity(input) {
