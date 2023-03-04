@@ -42,7 +42,7 @@ class Card {
     elements__button.addEventListener('click', () => { this._deleteCard() })
 
     this._buttonLike = this._newCard.querySelector('.elements__like');
-    this._buttonLike.addEventListener('click', () => { this._likeCard(this._buttonLike) })
+    this._buttonLike.addEventListener('click', () => { this._likeCard() })
 
     this._cardImage.addEventListener('click', () => {
       this._renderBigCard(this._name, this._link)
