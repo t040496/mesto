@@ -1,9 +1,9 @@
 class Card {
-  constructor(name, link, template, renderBigCard) {
+  constructor(name, link, template, handleCardClick) {
     //данные, которые пришли в констр-р, сохр-ем в свойства
     this._name = name;
     this._link = link;
-    this._renderBigCard = renderBigCard;
+    this._handleCardClick = handleCardClick;
     this._template = template;
   }
   _getTemplate() {
@@ -45,7 +45,7 @@ class Card {
     this._buttonLike.addEventListener('click', () => { this._likeCard() })
 
     this._cardImage.addEventListener('click', () => {
-      this._renderBigCard(this._name, this._link)
+      this._handleCardClick(this._name, this._link)
     });
   }
 
