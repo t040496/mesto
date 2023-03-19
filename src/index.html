@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Timur">
   <meta name="description" content="Загружайте фотографии, ставьте лайки в сервисе Mesto">
-  <link rel="stylesheet" href="./pages/index.css">
+  <!-- <link rel="stylesheet" href="./pages/index.css"> -->
   <title lang="en">Mesto</title>
 </head>
 <body class="page">
@@ -17,7 +17,7 @@
   <main>
     <section class="profile">
       <div class="profile__items">
-        <img src="./images/avatar.jpg" alt="Аватар пользователя" class="profile__image">
+        <img src="<%=require('./images/avatar.jpg')%>" alt="Аватар пользователя" class="profile__image">
         <div class="profile__info">
           <div class="profile__item">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -95,7 +95,7 @@
       </div>
     </article>
   </template>
-  <script type="module" src="./scripts/index.js" defer></script>
+  <!-- <script type="module" src="../dist/index.js" defer></script> -->
 </body>
 
 </html>
