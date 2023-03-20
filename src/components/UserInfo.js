@@ -1,21 +1,20 @@
 // USER INFO CLASS
 export class UserInfo {
   constructor({ profileTitleSelector, profileSubtitleSelector }) {
-    this._profileTitleSelector = profileTitleSelector;
-    this._profileSubtitleSelector = profileSubtitleSelector;
+    this._profileTitleSelector = document.querySelector(profileTitleSelector);
+    this._profileSubtitleSelector = document.querySelector(profileSubtitleSelector);
   }
   // GET USER INFO METHOD
   getUserInfo() {
     const userData = {
-      name: document.querySelector(this._profileTitleSelector).textContent,
-      profession: document.querySelector(this._profileSubtitleSelector).textContent
+      name: this._profileTitleSelector.textContent,
+      profession: this._profileSubtitleSelector.textContent
     }
     return userData;
   }
   // SET USER INFO METHOD
   setUserInfo(userData) {
-    document.querySelector(this._profileTitleSelector).textContent = userData.name;
-    console.log(userData)
-    document.querySelector(this._profileSubtitleSelector).textContent = userData.profession;
+    this._profileTitleSelector.textContent = userData.name;
+    this._profileSubtitleSelector.textContent = userData.profession;
   }
 }

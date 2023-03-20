@@ -5,14 +5,15 @@ import { Popup } from './Popup.js';
 export class PopupWithImage extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
+    this._popupImage = this._popup.querySelector('.popup__image') // изображение в зуме
+    this._popupCaption = this._popup.querySelector('.popup__image-subtitle'); // надпись изображения
   }
   // OPEN POPUP METHOD
   open(cardName, cardLink) {
-    const popupBigImageZoom = this._popup.querySelector('.popup__image') // изображение в зуме
-    const popupBigImageName = this._popup.querySelector('.popup__image-subtitle'); // надпись изображения
-    popupBigImageZoom.src = cardLink;
-    popupBigImageZoom.alt = cardName;
-    popupBigImageName.textContent = cardName;
+
+    this._popupImage.src = cardLink;
+    this._popupImage.alt = cardName;
+    this._popupCaption.textContent = cardName;
     super.open();
   }
 }
