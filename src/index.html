@@ -17,7 +17,9 @@
   <main>
     <section class="profile">
       <div class="profile__items">
+        <button class="profile__edit-photo">
         <img src="<%=require('./images/avatar.jpg')%>" alt="Аватар пользователя" class="profile__image">
+      </button>
         <div class="profile__info">
           <div class="profile__item">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -45,12 +47,27 @@
               <span class="popup__form-item-error formName-error" ></span>
             <input id="formSpecial" type="text" class="popup__form-item"
 
-              placeholder="Ваша профессия" name="profession" value="" required minlength="2" maxlength="200">
+              placeholder="Ваша профессия" name="about" value="" required minlength="2" maxlength="200">
               <span class="popup__form-item-error formSpecial-error" ></span>
           </fieldset>
           <button class="popup__button" type="submit">Сохранить</button>
         </form>
         <button class="popup__close-icon" type="button" id="buttonCloseProfile"></button>
+      </div>
+    </div>
+    <div class="popup" id="editProfilePhoto">
+      <div class="popup__container">
+        <form class="popup__form" id="editProfilePhotoForm" novalidate>
+          <h3 class="popup__title">Обновить аватар</h3>
+          <fieldset class="popup__profile-info">
+
+            <input type="url" id="formLink" class="popup__form-item"
+              placeholder="Ссылка на картинку" name="avatar" required>
+              <span class="popup__form-item-error formLink-error" ></span>
+          </fieldset>
+          <button class="popup__button popup__button_create popup__button_invalid" type="submit">Сохранить</button>
+        </form>
+        <button class="popup__close-icon" type="button" id="buttonCloseCard"></button>
       </div>
     </div>
     <div class="popup" id="addCardForm">
@@ -81,6 +98,17 @@
       </div>
 
     </div>
+    <div class="popup" id="deleteCardPopup">
+      <div class="popup__container">
+        <form class="popup__form" novalidate>
+          <h3 class="popup__title">Вы уверены?</h3>
+
+          <button class="popup__button" type="submit">Да</button>
+        </form>
+        <button class="popup__close-icon" type="button"></button>
+      </div>
+    </div>
+
   </main>
 
   <template id="elements__item-template">
@@ -91,7 +119,12 @@
       <img src="./images/Karachaevsk.jpg" alt="Храм на скальном отроге" class="elements__image">
       <div class="elements__info">
         <h2 class="elements__title">Карачаевск</h2>
-        <button class="elements__like" type="button"></button>
+
+        <div class="elements__like-container">
+          <button class="elements__like" type="button"></button>
+          <div class="elements__like-counter"></div>
+        </div>
+
       </div>
     </article>
   </template>

@@ -39,7 +39,10 @@ export const popupBigImage = '#popup-gallery';
 export const modalAddForm = '#addCardForm'// исправил название
 export const modalAddPlaceForm = document.querySelector(modalAddForm)
 export const addButton = document.querySelector('.profile__button-add'); // кнопка добавления карточек
+export const editProfilePhotoButton = document.querySelector('.profile__edit-photo'); // кнопка добавления карточек
 export const template = '#elements__item-template';
 export const profileForm = document.querySelector('.popup__form');
+export const deleteCardPopupSelector = '#deleteCardPopup'
 
-
+export const editProfilePhotoPopupSelector = '#editProfilePhoto';
+export const editProfilePhotoForm = document.querySelector('#editProfilePhotoForm');
