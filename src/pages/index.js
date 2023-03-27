@@ -24,6 +24,13 @@ import {
 import {api} from '../components/Api.js'
 import { PopupWithConfirm } from '../components/PopupWithConfirm.js';
 
+const cardList =  new Section({
+  renderer: (item) => {
+    cardList.addItem(createCard(item))
+  }
+}, '.elements');
+
+
 const deleteCardPopup = new PopupWithConfirm(deleteCardPopupSelector);
 deleteCardPopup.setEventListeners();
 
@@ -72,12 +79,22 @@ const userInfo = new UserInfo({
   profilePictureSelector: '.profile__image'
 });
 
-
-api.getUserInfo()
+Promise.all([
+  api.getUserInfo(),
+  api.getInitialCards()
+])
 .then((data) => {
   console.log(data)
-  userInfo.setUserInfo(data);
+  userInfo.setUserInfo(data[0])
+  cardList.renderItems(data[1]);
 })
+.catch((err)=>{ //попадаем сюда если один из промисов завершаться ошибкой
+
+  console.log(err);
+
+})
+
+
 
 
 
@@ -87,8 +104,6 @@ const editProfilePopup = new PopupWithForm({
     api.sendUserInfo(userData)
     .then((data) => {
       userInfo.setUserInfo(data);
-    })
-    .finally(() => {
       editProfilePopup.renderLoading(false);
       editProfilePopup.close();
     })
@@ -107,28 +122,14 @@ const editProfilePhotoPopup = new PopupWithForm({
     api.setUserAvatar(avatarData)
       .then((newAvatarData) => {
         userInfo.setUserInfo(newAvatarData);
+        editProfilePhotoPopup.renderLoading(false)
+        editProfilePhotoPopup.close()
       })
-      .then(() => editProfilePhotoPopup.close())
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => editProfilePhotoPopup.renderLoading(false))
   }
 }, editProfilePhotoPopupSelector);
 editProfilePhotoPopup.setEventListeners();
 
-let cardList;
 
-api.getInitialCards()
-.then((data) => {
-  cardList = new Section({
-    items: data,
-    renderer: (item) => {
-      cardList.addItem(createCard(item))
-    }
-  }, '.elements');
-  cardList.renderItems();
-})
 
 const popupAddCard = new PopupWithForm({
   handleFormSubmit: (placeData) => {
@@ -137,9 +138,6 @@ const popupAddCard = new PopupWithForm({
     .then((data) => {
       const newCard = createCard(data);
       cardList.addItem(newCard);
-    })
-
-    .finally(() => {
       popupAddCard.renderLoading(false);
       popupAddCard.close();
     })
