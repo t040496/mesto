@@ -1,6 +1,6 @@
 import { Popup } from './Popup.js';
 
-// POPUP WITH FORM CLASS
+
 export class PopupWithConfirm extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
@@ -8,7 +8,7 @@ export class PopupWithConfirm extends Popup {
     this._submitFormButtonElement = this._formElement.querySelector('.popup__button');
     this._submitFormButtonText = this._submitFormButtonElement.textContent;
   }
-  // POPUP EVENT LISTENERS
+
   setEventListeners() {
     this._formElement.addEventListener('submit', (evt) => {
       evt.preventDefault();
@@ -16,11 +16,11 @@ export class PopupWithConfirm extends Popup {
     });
     super.setEventListeners();
   }
-  // HANDLE FORM SUBMIT METHOD
+
   handleFormSubmit(func) {
     this._handleFormSubmit = func;
   }
-  // SET ONLOAD BUTTON TEXT METHOD
+
   renderLoading(isLoading, loadingText='Удаление...') {
     if (isLoading) {
       this._submitFormButtonElement.textContent = loadingText;
