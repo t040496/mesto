@@ -9,6 +9,7 @@ export class PopupWithForm extends Popup {
     this._formElement = this._popup.querySelector('.popup__form');
     this._submitFormButtonElement = this._formElement.querySelector('.popup__button');
     this._inputList = this._formElement.querySelectorAll('.popup__form-item');
+    this._submitFormButtonText = this._submitFormButtonElement.textContent;
   }
 
   setEventListeners() {
@@ -39,6 +40,7 @@ export class PopupWithForm extends Popup {
   }
   renderLoading(isLoading, loadingText='Сохранение...') {
     if (isLoading) {
+
       this._submitFormButtonElement.textContent = loadingText;
     } else {
       this._submitFormButtonElement.textContent = this._submitFormButtonText;

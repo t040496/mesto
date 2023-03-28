@@ -94,18 +94,19 @@ Promise.all([
 
 })
 
-
-
-
-
 const editProfilePopup = new PopupWithForm({
   handleFormSubmit: (userData) => {
     editProfilePopup.renderLoading(true);
     api.sendUserInfo(userData)
     .then((data) => {
       userInfo.setUserInfo(data);
-      editProfilePopup.renderLoading(false);
       editProfilePopup.close();
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+    .finally(() => {
+      editProfilePopup.renderLoading(false);
     })
   }
 }, profilePopup);
@@ -122,8 +123,13 @@ const editProfilePhotoPopup = new PopupWithForm({
     api.setUserAvatar(avatarData)
       .then((newAvatarData) => {
         userInfo.setUserInfo(newAvatarData);
-        editProfilePhotoPopup.renderLoading(false)
         editProfilePhotoPopup.close()
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        editProfilePhotoPopup.renderLoading(false)
       })
   }
 }, editProfilePhotoPopupSelector);
@@ -138,10 +144,14 @@ const popupAddCard = new PopupWithForm({
     .then((data) => {
       const newCard = createCard(data);
       cardList.addItem(newCard);
-      popupAddCard.renderLoading(false);
       popupAddCard.close();
     })
-
+    .catch((error) => {
+      console.log(error);
+    })
+    .finally(() => {
+      popupAddCard.renderLoading(false);
+    })
 
   }
 }, modalAddForm);
